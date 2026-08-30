@@ -1,0 +1,17 @@
+[
+   {
+        "id": "eval_001",
+        "question": "What is RAG?",
+        "expected_answer": "RAG stands for Retrieval-Augmented Generation. It retrieves relevant information from external knowledge source and provides that context to an LLM to generate a grounded answer."
+   },
+   {
+        "id": "eval_002",
+        "question": "What is a Python virtual environment?",
+        "expected_answer": "A Python virtual environment is an isolated environment that keeps a project's Python packages separate from other projects." 
+    },
+    {
+          "id": "eval_003",
+          "question": "What is an API?", 
+          "expected_answer": "An API is an interface that allows different software applications to communicate with each other."
+    }
+]
