@@ -4,6 +4,10 @@ from pydantic import BaseModel
 from app.config import load_config
 from app.guardrails import GuardrailViolation, validate_input
 from app.llm_service import create_client, generate_response
+from app.logging_config import configure_logging
+
+
+configure_logging()
 
 
 app = FastAPI(
