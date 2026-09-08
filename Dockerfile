@@ -1,16 +1,26 @@
 FROM python:3.13-slim
 
+# Prevent Python from creating .pyc files
+# and make application logs appear immediately.
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
 WORKDIR /app
 
+# Create a dedicated non-root user.
+RUN useradd --create-home --shell /bin/bash appuser
+
+# Install Python dependencies first so Docker can cache this layer.
 COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY app ./app
+# Copy only application code.
+COPY --chown=appuser:appuser app ./app
 
-RUN useradd --create-home --shell /bin/bash appuser \
-    && chown -R appuser:appuser /app
-
+# Run the application as a non-root user.
 USER appuser
 
 EXPOSE 8000
